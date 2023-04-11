@@ -1,0 +1,84 @@
+# https://networkupstools.org/protocols/megatec.html
+#
+# >>> "Q1\r"
+# <<< "(232.4 232.4 232.4 003 49.9 12.6 25.0 00001000\r"
+# >>> "D\r"
+# <<< "D"
+# >>> "I\r"
+# no response
+# >>> "F\r"
+# <<< "#220.0 003 12.00 50.0\r"
+#
+
+# [07:44:30][D][uart_debug:158]: <<< "(232.9 232.9 232.9 003 49.9 13.4 25.0 00001000\r"
+# [07:44:32][D][uart_debug:158]: <<< "(232.4 232.9 232.9 003 49.9 13.4 25.0 00001000\r"
+# [07:44:34][D][uart_debug:158]: <<< "(232.4 232.9 232.9 003 49.9 13.4 25.0 00001000\r"
+# [07:44:36][D][uart_debug:158]: <<< "(232.9 232.9 232.9 003 49.9 13.4 25.0 00001000\r"
+# -> Power removed
+# [07:44:38][D][uart_debug:158]: <<< "(005.2 232.4 226.8 002 50.1 12.9 25.0 10001000\r"
+# [07:44:40][D][uart_debug:158]: <<< "(005.2 005.2 226.4 002 50.1 12.8 25.0 10001000\r"
+# [07:44:42][D][uart_debug:158]: <<< "(005.2 005.2 226.4 002 50.1 12.7 25.0 10001000\r"
+# ...
+# [07:49:32][D][uart_debug:158]: <<< "(005.2 005.2 227.2 002 50.1 12.2 25.0 10001000\r"
+# [07:49:34][D][uart_debug:158]: <<< "(005.2 005.2 227.2 002 50.1 12.2 25.0 10001000\r"
+# -> UPS turned off / load turned off
+#
+# Turn off after 5min because of low load. Independend of the battery voltage probably.
+#
+# -> Power plug attached. Load turns on immediately
+# [07:49:30][D][uart_debug:158]: <<< "(005.2 005.2 225.9 002 50.1 12.2 25.0 10001000\r"
+# [07:49:32][D][uart_debug:158]: <<< "(005.2 005.2 227.2 002 50.1 12.2 25.0 10001000\r"
+# [07:49:34][D][uart_debug:158]: <<< "(005.2 005.2 227.2 002 50.1 12.2 25.0 10001000\r"
+# [07:51:42][D][uart_debug:158]: <<< "(229.8 229.8 000.0 000 00.0 12.7 25.0 00001011\r"
+# [07:51:44][D][uart_debug:158]: <<< "(230.7 230.7 000.0 000 00.0 12.7 25.0 00001011\r"
+# [07:51:46][D][uart_debug:158]: <<< "(231.1 231.1 231.1 003 49.9 12.8 25.0 00001001\r"
+# [07:51:48][D][uart_debug:158]: <<< "(231.6 231.1 231.1 003 49.9 12.8 25.0 00001001\r"
+#
+
+substitutions:
+  name: megatec-protocol
+  tx_pin: GPIO4
+  rx_pin: GPIO5
+
+esphome:
+  name: ${name}
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+api:
+  reboot_timeout: 0s
+
+ota:
+logger:
+
+uart:
+  id: uart0
+  baud_rate: 2400
+  tx_pin: ${tx_pin}
+  rx_pin: ${rx_pin}
+  debug:
+    direction: BOTH
+    dummy_receiver: true
+    after:
+      delimiter: "\r"
+    sequence:
+      - lambda: UARTDebug::log_string(direction, bytes);
+
+interval:
+  - interval: 10s
+    then:
+      - uart.write: "Q1\r"
+      - delay: 2s
+
+      - uart.write: "D\r"
+      - delay: 2s
+
+      - uart.write: "I\r"
+      - delay: 2s
+
+      - uart.write: "F\r"
+      - delay: 2s
