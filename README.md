@@ -21,6 +21,42 @@ ESPHome component to monitor and control a Mustek PowerMust 800 UPS via RS232
 * [ESPHome 2023.3.0 or higher](https://github.com/esphome/esphome/releases).
 * Generic ESP32/ESP8266 board
 
+## Schematics
+
+```
+                 RS232                     UART-TTL
+┌───────────┐              ┌──────────┐                ┌─────────┐
+│           │              │          │<----- RX ----->│         │
+│           │<---- TX ---->│  RS232   │<----- TX ----->│ ESP32/  │
+│ Powermust │<---- RX ---->│  to TTL  │<----- GND ---->│ ESP8266 │
+│           │<---- GND --->│  module  │<-- 3.3V VCC -->│         │<--- VCC
+│           │              │          │                │         │<--- GND
+└───────────┘              └──────────┘                └─────────┘
+```
+
+### D-SUB 9P connector
+
+| Pin | Purpose      | MAX3232 pin       |
+|:---:| :----------- | :---------------- |
+|  1  |              |                   |
+|  2  | TX           | P13 (RIN1)        |
+|  3  | RX           | P14 (DOUT1)       |
+|  4  |              |                   |
+|  5  | GND          | P15 (GND)         |
+|  6  |              |                   |
+|  7  |              |                   |
+|  8  |              |                   |
+|  9  |              |                   |
+
+### MAX3232
+
+| Pin          | Label        | ESPHome     | ESP8266 example  | ESP32 example |
+| :----------- | :----------- | :---------- | :--------------- | :------------ |
+| P11 (DIN1)   | TXD          | `tx_pin`    | `GPIO4`          | `GPIO16`      |
+| P12 (ROUT1)  | RXD          | `rx_pin`    | `GPIO5`          | `GPIO17`      |
+| P16 (VCC)    | VCC          |             |                  |               |
+| P15 (GND)    | GND          |             |                  |               |
+
 ## Installation
 
 You can install this component with [ESPHome external components feature](https://esphome.io/components/external_components.html) like this:
