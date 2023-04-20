@@ -329,7 +329,7 @@ void Powermust::add_polling_command_(const char *command, ENUMPollingCommand pol
       used_polling_command.command = new uint8_t[length];  // NOLINT(cppcoreguidelines-owning-memory)
       size_t i = 0;
       for (; beg != end; ++beg, ++i) {
-        used_polling_command.command[i] = (uint8_t)(*beg);
+        used_polling_command.command[i] = (uint8_t) (*beg);
       }
       used_polling_command.errors = 0;
       used_polling_command.identifier = polling_command;
