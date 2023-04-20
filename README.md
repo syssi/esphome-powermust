@@ -114,7 +114,7 @@ logger:
   level: DEBUG
 
 uart:
-  - id: uart0
+  - id: uart_0
     baud_rate: 2400
     tx_pin: ${tx_pin}
     rx_pin: ${rx_pin}
