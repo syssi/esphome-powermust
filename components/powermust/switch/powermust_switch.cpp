@@ -10,11 +10,11 @@ static const char *const TAG = "powermust.switch";
 void PowermustSwitch::dump_config() { LOG_SWITCH("", "Powermust Switch", this); }
 void PowermustSwitch::write_state(bool state) {
   if (state) {
-    if (this->on_command_.length() > 0) {
+    if (!this->on_command_.empty()) {
       this->parent_->switch_command(this->on_command_);
     }
   } else {
-    if (this->off_command_.length() > 0) {
+    if (!this->off_command_.empty()) {
       this->parent_->switch_command(this->off_command_);
     }
   }

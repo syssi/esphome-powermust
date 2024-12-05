@@ -49,7 +49,6 @@ void Powermust::loop() {
   }
 
   if (this->state_ == STATE_POLL_DECODED) {
-    std::string mode;
     switch (this->used_polling_commands_[this->last_polling_command_].identifier) {
       case POLLING_Q1:
         if (this->grid_voltage_) {
@@ -130,7 +129,6 @@ void Powermust::loop() {
   }
 
   if (this->state_ == STATE_POLL_CHECKED) {
-    std::string fc;
     char tmp[POWERMUST_READ_BUFFER_LENGTH];
     sprintf(tmp, "%s", this->read_buffer_);
     switch (this->used_polling_commands_[this->last_polling_command_].identifier) {
@@ -243,7 +241,7 @@ uint8_t Powermust::check_incoming_length_(uint8_t length) {
 
 // send next command used
 uint8_t Powermust::send_next_command_() {
-  if (this->command_queue_[this->command_queue_position_].length() != 0) {
+  if (!this->command_queue_[this->command_queue_position_].empty()) {
     const char *command = this->command_queue_[this->command_queue_position_].c_str();
     uint8_t byte_command[16];
     uint8_t length = this->command_queue_[this->command_queue_position_].length();
@@ -265,10 +263,10 @@ uint8_t Powermust::send_next_command_() {
 
 void Powermust::send_next_poll_() {
   this->last_polling_command_ = (this->last_polling_command_ + 1) % 15;
-  if (this->used_polling_commands_[this->last_polling_command_].length == 0) {
+  if (this->used_polling_commands_[this->last_polling_command_].empty()) {
     this->last_polling_command_ = 0;
   }
-  if (this->used_polling_commands_[this->last_polling_command_].length == 0) {
+  if (this->used_polling_commands_[this->last_polling_command_].empty()) {
     // no command specified
     return;
   }
