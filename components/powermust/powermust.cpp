@@ -309,6 +309,30 @@ void Powermust::dump_config() {
       ESP_LOGCONFIG(TAG, "%s", used_polling_command.command);
     }
   }
+
+  LOG_SENSOR("", "Grid Voltage", this->grid_voltage_);
+  LOG_SENSOR("", "Grid Fault Voltage", this->grid_fault_voltage_);
+  LOG_SENSOR("", "AC Output Voltage", this->ac_output_voltage_);
+  LOG_SENSOR("", "AC Output Load Percent", this->ac_output_load_percent_);
+  LOG_SENSOR("", "Grid Frequency", this->grid_frequency_);
+  LOG_SENSOR("", "Battery Voltage", this->battery_voltage_);
+  LOG_SENSOR("", "Temperature", this->temperature_);
+  LOG_SENSOR("", "AC Output Rating Voltage", this->ac_output_rating_voltage_);
+  LOG_SENSOR("", "AC Output Rating Current", this->ac_output_rating_current_);
+  LOG_SENSOR("", "Battery Rating Voltage", this->battery_rating_voltage_);
+  LOG_SENSOR("", "AC Output Rating Frequency", this->ac_output_rating_frequency_);
+
+  LOG_BINARY_SENSOR("", "Utility Fail", this->utility_fail_);
+  LOG_BINARY_SENSOR("", "Battery Low", this->battery_low_);
+  LOG_BINARY_SENSOR("", "Bypass Active", this->bypass_active_);
+  LOG_BINARY_SENSOR("", "UPS Failed", this->ups_failed_);
+  LOG_BINARY_SENSOR("", "UPS Type Standby", this->ups_type_standby_);
+  LOG_BINARY_SENSOR("", "Test In Progress", this->test_in_progress_);
+  LOG_BINARY_SENSOR("", "Shutdown Active", this->shutdown_active_);
+  LOG_BINARY_SENSOR("", "Beeper On", this->beeper_on_);
+
+  LOG_TEXT_SENSOR("", "Last Q1", this->last_q1_);
+  LOG_TEXT_SENSOR("", "Last F", this->last_f_);
 }
 void Powermust::update() {}
 
