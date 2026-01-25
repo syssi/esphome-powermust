@@ -129,8 +129,7 @@ void Powermust::loop() {
   }
 
   if (this->state_ == STATE_POLL_CHECKED) {
-    char tmp[POWERMUST_READ_BUFFER_LENGTH];
-    sprintf(tmp, "%s", this->read_buffer_);
+    const char *tmp = reinterpret_cast<char *>(this->read_buffer_);
     switch (this->used_polling_commands_[this->last_polling_command_].identifier) {
       case POLLING_Q1:
         ESP_LOGD(TAG, "Decode Q1");
