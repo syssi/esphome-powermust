@@ -34,10 +34,10 @@ PIPSWITCH_CONFIG_SCHEMA = switch.switch_schema(
 
 CONFIG_SCHEMA = POWERMUST_COMPONENT_SCHEMA.extend(
     {
-        cv.Optional(CONF_BEEPER): PIPSWITCH_CONFIG_SCHEMA,
-        cv.Optional(CONF_QUICK_TEST): PIPSWITCH_SCHEMA,
-        cv.Optional(CONF_DEEP_TEST): PIPSWITCH_SCHEMA,
-        cv.Optional(CONF_TEN_MINUTES_TEST): PIPSWITCH_SCHEMA,
+        cv.Optional(type): PIPSWITCH_CONFIG_SCHEMA
+        if type == CONF_BEEPER
+        else PIPSWITCH_SCHEMA
+        for type in TYPES
     }
 )
 
