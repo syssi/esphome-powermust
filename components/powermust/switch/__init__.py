@@ -21,17 +21,13 @@ TYPES = {
 
 PowermustSwitch = powermust_ns.class_("PowermustSwitch", switch.Switch, cg.Component)
 
-SWITCH_SCHEMAS = {
-    CONF_BEEPER: switch.switch_schema(PowermustSwitch, icon=ICON_POWER, block_inverted=True, entity_category=ENTITY_CATEGORY_CONFIG).extend(cv.COMPONENT_SCHEMA),
-    CONF_QUICK_TEST: switch.switch_schema(PowermustSwitch, icon=ICON_POWER, block_inverted=True).extend(cv.COMPONENT_SCHEMA),
-    CONF_DEEP_TEST: switch.switch_schema(PowermustSwitch, icon=ICON_POWER, block_inverted=True).extend(cv.COMPONENT_SCHEMA),
-    CONF_TEN_MINUTES_TEST: switch.switch_schema(PowermustSwitch, icon=ICON_POWER, block_inverted=True).extend(cv.COMPONENT_SCHEMA),
-}
-
-assert set(TYPES) == set(SWITCH_SCHEMAS), "TYPES and SWITCH_SCHEMAS are out of sync"
-
 CONFIG_SCHEMA = POWERMUST_COMPONENT_SCHEMA.extend(
-    {cv.Optional(type): SWITCH_SCHEMAS[type] for type in TYPES}
+    {
+        cv.Optional(CONF_BEEPER): switch.switch_schema(PowermustSwitch, icon=ICON_POWER, block_inverted=True, entity_category=ENTITY_CATEGORY_CONFIG).extend(cv.COMPONENT_SCHEMA),
+        cv.Optional(CONF_QUICK_TEST): switch.switch_schema(PowermustSwitch, icon=ICON_POWER, block_inverted=True).extend(cv.COMPONENT_SCHEMA),
+        cv.Optional(CONF_DEEP_TEST): switch.switch_schema(PowermustSwitch, icon=ICON_POWER, block_inverted=True).extend(cv.COMPONENT_SCHEMA),
+        cv.Optional(CONF_TEN_MINUTES_TEST): switch.switch_schema(PowermustSwitch, icon=ICON_POWER, block_inverted=True).extend(cv.COMPONENT_SCHEMA),
+    }
 )
 
 
