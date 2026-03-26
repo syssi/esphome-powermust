@@ -1,7 +1,7 @@
 import esphome.codegen as cg
 from esphome.components import switch
 import esphome.config_validation as cv
-from esphome.const import CONF_BEEPER, ICON_POWER
+from esphome.const import CONF_BEEPER, ENTITY_CATEGORY_CONFIG, ICON_POWER
 
 from .. import CONF_POWERMUST_ID, POWERMUST_COMPONENT_SCHEMA, powermust_ns
 
@@ -21,12 +21,24 @@ TYPES = {
 
 PowermustSwitch = powermust_ns.class_("PowermustSwitch", switch.Switch, cg.Component)
 
-PIPSWITCH_SCHEMA = switch.switch_schema(
-    PowermustSwitch, icon=ICON_POWER, block_inverted=True
-)
-
 CONFIG_SCHEMA = POWERMUST_COMPONENT_SCHEMA.extend(
-    {cv.Optional(type): PIPSWITCH_SCHEMA for type in TYPES}
+    {
+        cv.Optional(CONF_BEEPER): switch.switch_schema(
+            PowermustSwitch,
+            icon=ICON_POWER,
+            block_inverted=True,
+            entity_category=ENTITY_CATEGORY_CONFIG,
+        ),
+        cv.Optional(CONF_QUICK_TEST): switch.switch_schema(
+            PowermustSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_DEEP_TEST): switch.switch_schema(
+            PowermustSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_TEN_MINUTES_TEST): switch.switch_schema(
+            PowermustSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+    }
 )
 
 
