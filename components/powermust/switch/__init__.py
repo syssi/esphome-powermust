@@ -23,7 +23,7 @@ PowermustSwitch = powermust_ns.class_("PowermustSwitch", switch.Switch, cg.Compo
 
 PIPSWITCH_SCHEMA = switch.switch_schema(
     PowermustSwitch, icon=ICON_POWER, block_inverted=True
-).extend(cv.COMPONENT_SCHEMA)
+)
 
 CONFIG_SCHEMA = POWERMUST_COMPONENT_SCHEMA.extend(
     {cv.Optional(type): PIPSWITCH_SCHEMA for type in TYPES}
