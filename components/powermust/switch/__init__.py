@@ -23,10 +23,21 @@ PowermustSwitch = powermust_ns.class_("PowermustSwitch", switch.Switch, cg.Compo
 
 CONFIG_SCHEMA = POWERMUST_COMPONENT_SCHEMA.extend(
     {
-        cv.Optional(CONF_BEEPER): switch.switch_schema(PowermustSwitch, icon=ICON_POWER, block_inverted=True, entity_category=ENTITY_CATEGORY_CONFIG),
-        cv.Optional(CONF_QUICK_TEST): switch.switch_schema(PowermustSwitch, icon=ICON_POWER, block_inverted=True),
-        cv.Optional(CONF_DEEP_TEST): switch.switch_schema(PowermustSwitch, icon=ICON_POWER, block_inverted=True),
-        cv.Optional(CONF_TEN_MINUTES_TEST): switch.switch_schema(PowermustSwitch, icon=ICON_POWER, block_inverted=True),
+        cv.Optional(CONF_BEEPER): switch.switch_schema(
+            PowermustSwitch,
+            icon=ICON_POWER,
+            block_inverted=True,
+            entity_category=ENTITY_CATEGORY_CONFIG,
+        ),
+        cv.Optional(CONF_QUICK_TEST): switch.switch_schema(
+            PowermustSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_DEEP_TEST): switch.switch_schema(
+            PowermustSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_TEN_MINUTES_TEST): switch.switch_schema(
+            PowermustSwitch, icon=ICON_POWER, block_inverted=True
+        ),
     }
 )
 
