@@ -5,6 +5,7 @@ import esphome.config_validation as cv
 from .. import CONF_POWERMUST_ID, POWERMUST_COMPONENT_SCHEMA
 
 DEPENDENCIES = ["uart"]
+CODEOWNERS = ["@syssi"]
 
 CONF_LAST_Q1 = "last_q1"
 CONF_LAST_F = "last_f"
