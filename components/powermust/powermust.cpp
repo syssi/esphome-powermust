@@ -333,7 +333,7 @@ void Powermust::dump_config() {
   LOG_TEXT_SENSOR("", "Last Q1", this->last_q1_);
   LOG_TEXT_SENSOR("", "Last F", this->last_f_);
 }
-void Powermust::update() {}
+void Powermust::update() { ESP_LOGW(TAG, "update() not implemented"); }
 
 void Powermust::add_polling_command_(const char *command, ENUMPollingCommand polling_command) {
   for (auto &used_polling_command : this->used_polling_commands_) {
