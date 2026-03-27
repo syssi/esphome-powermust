@@ -6,6 +6,7 @@ from esphome.const import CONF_BEEPER, ENTITY_CATEGORY_CONFIG, ICON_POWER
 from .. import CONF_POWERMUST_ID, POWERMUST_COMPONENT_SCHEMA, powermust_ns
 
 DEPENDENCIES = ["uart"]
+CODEOWNERS = ["@syssi"]
 
 # CONF_BEEPER = "beeper"
 CONF_QUICK_TEST = "quick_test"

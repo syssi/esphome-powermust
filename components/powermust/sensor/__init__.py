@@ -18,6 +18,7 @@ from esphome.const import (
 from .. import CONF_POWERMUST_ID, POWERMUST_COMPONENT_SCHEMA
 
 DEPENDENCIES = ["uart"]
+CODEOWNERS = ["@syssi"]
 
 # Q1 sensors
 CONF_GRID_VOLTAGE = "grid_voltage"
