@@ -52,65 +52,65 @@ binary_sensor:
   - platform: powermust
     powermust_id: powermust0
     utility_fail:
-      name: "${name} utility fail"
+      name: "utility fail"
     battery_low:
-      name: "${name} battery low"
+      name: "battery low"
     bypass_active:
-      name: "${name} bypass active"
+      name: "bypass active"
     ups_failed:
-      name: "${name} ups failed"
+      name: "ups failed"
     ups_type_standby:
-      name: "${name} ups type standby"
+      name: "ups type standby"
     test_in_progress:
-      name: "${name} test in progress"
+      name: "test in progress"
     shutdown_active:
-      name: "${name} shutdown active"
+      name: "shutdown active"
     beeper_on:
-      name: "${name} beeper on"
+      name: "beeper on"
 
 sensor:
   - platform: powermust
     powermust_id: powermust0
     grid_voltage:
-      name: "${name} grid voltage"
+      name: "grid voltage"
     grid_fault_voltage:
-      name: "${name} grid fault voltage"
+      name: "grid fault voltage"
     ac_output_voltage:
-      name: "${name} ac output voltage"
+      name: "ac output voltage"
     ac_output_load_percent:
-      name: "${name} ac output load percent"
+      name: "ac output load percent"
     grid_frequency:
-      name: "${name} grid frequency"
+      name: "grid frequency"
     battery_voltage:
-      name: "${name} battery voltage"
+      name: "battery voltage"
     temperature:
-      name: "${name} temperature"
+      name: "temperature"
     # ac_output_rating_voltage:
-    #   name: "${name} ac output rating voltage"
+    #   name: "ac output rating voltage"
     # ac_output_rating_current:
-    #   name: "${name} ac output rating current"
+    #   name: "ac output rating current"
     # battery_rating_voltage:
-    #   name: "${name} battery rating voltage"
+    #   name: "battery rating voltage"
     # ac_output_rating_frequency:
-    #   name: "${name} ac output rating frequency"
+    #   name: "ac output rating frequency"
 
 switch:
   - platform: powermust
     powermust_id: powermust0
     beeper:
-      name: "${name} beeper"
+      name: "beeper"
     quick_test:
-      name: "${name} quick test"
+      name: "quick test"
     # Unsupported by Powermust 800 USB
     # deep_test:
-    #   name: "${name} deep test"
+    #   name: "deep test"
     # ten_minutes_test:
-    #   name: "${name} 10min test"
+    #   name: "10min test"
 
 text_sensor:
   - platform: powermust
     powermust_id: powermust0
     last_q1:
-      name: "${name} last q1"
+      name: "last q1"
     last_f:
-      name: "${name} last f"
+      name: "last f"
