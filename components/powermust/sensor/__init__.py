@@ -100,7 +100,7 @@ CONFIG_SCHEMA = POWERMUST_COMPONENT_SCHEMA.extend(
 async def to_code(config):
     paren = await cg.get_variable(config[CONF_POWERMUST_ID])
 
-    for type, _ in TYPES.items():
+    for type in TYPES:
         if type in config:
             conf = config[type]
             sens = await sensor.new_sensor(conf)
