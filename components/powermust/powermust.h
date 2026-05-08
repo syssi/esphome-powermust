@@ -8,8 +8,7 @@
 #include "esphome/core/automation.h"
 #include "esphome/core/component.h"
 
-namespace esphome {
-namespace powermust {
+namespace esphome::powermust {
 
 enum ENUMPollingCommand {
   POLLING_Q1 = 0,
@@ -116,5 +115,4 @@ class Powermust : public uart::UARTDevice, public PollingComponent {
   PollingCommand used_polling_commands_[15];
 };
 
-}  // namespace powermust
-}  // namespace esphome
+}  // namespace esphome::powermust

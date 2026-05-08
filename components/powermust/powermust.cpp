@@ -1,8 +1,7 @@
 #include "powermust.h"
 #include "esphome/core/log.h"
 
-namespace esphome {
-namespace powermust {
+namespace esphome::powermust {
 
 static const char *const TAG = "powermust";
 
@@ -360,5 +359,4 @@ void Powermust::add_polling_command_(const char *command, ENUMPollingCommand pol
   }
 }
 
-}  // namespace powermust
-}  // namespace esphome
+}  // namespace esphome::powermust

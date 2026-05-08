@@ -4,8 +4,7 @@
 #include "esphome/components/switch/switch.h"
 #include "esphome/core/component.h"
 
-namespace esphome {
-namespace powermust {
+namespace esphome::powermust {
 class Powermust;
 class PowermustSwitch : public switch_::Switch, public Component {
  public:
@@ -21,5 +20,4 @@ class PowermustSwitch : public switch_::Switch, public Component {
   Powermust *parent_;
 };
 
-}  // namespace powermust
-}  // namespace esphome
+}  // namespace esphome::powermust
