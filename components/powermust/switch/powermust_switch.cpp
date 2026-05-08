@@ -2,8 +2,7 @@
 #include "esphome/core/log.h"
 #include "esphome/core/application.h"
 
-namespace esphome {
-namespace powermust {
+namespace esphome::powermust {
 
 static const char *const TAG = "powermust.switch";
 
@@ -20,5 +19,4 @@ void PowermustSwitch::write_state(bool state) {
   }
 }
 
-}  // namespace powermust
-}  // namespace esphome
+}  // namespace esphome::powermust
