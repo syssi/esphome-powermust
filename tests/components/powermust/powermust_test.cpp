@@ -110,6 +110,18 @@ TEST_F(PowermustQ1DecodeTest, UtilityFailTrue) {
   EXPECT_TRUE(utility_fail_.state);
 }
 
+TEST_F(PowermustQ1DecodeTest, AllFlagsTrue) {
+  ups_.decode_and_publish(POLLING_Q1, "(005.2 232.4 226.8 002 50.1 12.9 25.0 11111111\r");
+  EXPECT_TRUE(utility_fail_.state);
+  EXPECT_TRUE(battery_low_.state);
+  EXPECT_TRUE(bypass_active_.state);
+  EXPECT_TRUE(ups_failed_.state);
+  EXPECT_TRUE(ups_type_standby_.state);
+  EXPECT_TRUE(test_in_progress_.state);
+  EXPECT_TRUE(shutdown_active_.state);
+  EXPECT_TRUE(beeper_on_.state);
+}
+
 TEST_F(PowermustQ1DecodeTest, LastQ1Raw) {
   ups_.decode_and_publish(POLLING_Q1, "(232.9 232.9 232.9 003 49.9 13.4 25.0 00001000\r");
   EXPECT_EQ(last_q1_.state.substr(0, 10), "(232.9 232");
