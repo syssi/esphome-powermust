@@ -135,22 +135,25 @@ void Powermust::loop() {
         // (232.9 232.9 232.9 003 49.9 13.4 25.0 00001000\r
         // (005.2 232.4 226.8 002 50.1 12.9 25.0 10001000\r
         //                                 1  2  3  4  5  6  7  8
-        sscanf(tmp, "(%f %f %f %d %f %f %f %1d%1d%1d%1d%1d%1d%1d%1d",  // NOLINT
-               &value_grid_voltage_,                                   // NOLINT
-               &value_grid_fault_voltage_,                             // NOLINT
-               &value_ac_output_voltage_,                              // NOLINT
-               &value_ac_output_load_percent_,                         // NOLINT
-               &value_grid_frequency_,                                 // NOLINT
-               &value_battery_voltage_,                                // NOLINT
-               &value_temperature_,                                    // NOLINT
-               &value_utility_fail_,                                   // NOLINT
-               &value_battery_low_,                                    // NOLINT
-               &value_bypass_active_,                                  // NOLINT
-               &value_ups_failed_,                                     // NOLINT
-               &value_ups_type_standby_,                               // NOLINT
-               &value_test_in_progress_,                               // NOLINT
-               &value_shutdown_active_,                                // NOLINT
-               &value_beeper_on_);                                     // NOLINT
+        {
+          char *p = const_cast<char *>(tmp) + 1;  // skip '('
+          value_grid_voltage_ = strtof(p, &p);
+          value_grid_fault_voltage_ = strtof(p, &p);
+          value_ac_output_voltage_ = strtof(p, &p);
+          value_ac_output_load_percent_ = strtol(p, &p, 10);
+          value_grid_frequency_ = strtof(p, &p);
+          value_battery_voltage_ = strtof(p, &p);
+          value_temperature_ = strtof(p, &p);
+          while (*p == ' ') p++;
+          value_utility_fail_ = *p++ - '0';
+          value_battery_low_ = *p++ - '0';
+          value_bypass_active_ = *p++ - '0';
+          value_ups_failed_ = *p++ - '0';
+          value_ups_type_standby_ = *p++ - '0';
+          value_test_in_progress_ = *p++ - '0';
+          value_shutdown_active_ = *p++ - '0';
+          value_beeper_on_ = *p - '0';
+        }
         if (this->last_q1_) {
           this->last_q1_->publish_state(tmp);
         }
@@ -159,13 +162,13 @@ void Powermust::loop() {
       case POLLING_F:
         ESP_LOGD(TAG, "Decode F");
         // "#220.0 003 12.00 50.0\r"
-        sscanf(                                   // NOLINT
-            tmp,                                  // NOLINT
-            "#%f %d %f %f",                       // NOLINT
-            &value_ac_output_rating_voltage_,     // NOLINT
-            &value_ac_output_rating_current_,     // NOLINT
-            &value_battery_rating_voltage_,       // NOLINT
-            &value_ac_output_rating_frequency_);  // NOLINT
+        {
+          char *p = const_cast<char *>(tmp) + 1;  // skip '#'
+          value_ac_output_rating_voltage_ = strtof(p, &p);
+          value_ac_output_rating_current_ = strtol(p, &p, 10);
+          value_battery_rating_voltage_ = strtof(p, &p);
+          value_ac_output_rating_frequency_ = strtof(p, &p);
+        }
         if (this->last_f_) {
           this->last_f_->publish_state(tmp);
         }
