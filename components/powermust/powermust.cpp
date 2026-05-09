@@ -144,7 +144,8 @@ void Powermust::loop() {
           value_grid_frequency_ = strtof(p, &p);
           value_battery_voltage_ = strtof(p, &p);
           value_temperature_ = strtof(p, &p);
-          while (*p == ' ') p++;
+          while (*p == ' ')
+            p++;
           value_utility_fail_ = *p++ - '0';
           value_battery_low_ = *p++ - '0';
           value_bypass_active_ = *p++ - '0';
