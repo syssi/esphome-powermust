@@ -1,9 +1,14 @@
 #include "powermust.h"
 #include "esphome/core/log.h"
 
+// Fallback for ESPHome < 2026.10.0
+#ifndef ESPHOME_LOG_TAG
+#define ESPHOME_LOG_TAG(name, tag) static const char *const name = tag
+#endif
+
 namespace esphome::powermust {
 
-static const char *const TAG = "powermust";
+ESPHOME_LOG_TAG(TAG, "powermust");
 
 void Powermust::setup() {
   this->state_ = STATE_IDLE;
