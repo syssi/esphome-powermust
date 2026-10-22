@@ -1,17 +1,12 @@
 """Schema structure tests for powermust ESPHome component modules."""
 
-import os
+from pathlib import Path
 import sys
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import components.powermust as hub  # noqa: E402
-from components.powermust import (  # noqa: E402
-    binary_sensor,
-    sensor,
-    switch,
-    text_sensor,
-)
+from components.powermust import binary_sensor, sensor, switch, text_sensor  # noqa: E402
 
 
 class TestHubConstants:
