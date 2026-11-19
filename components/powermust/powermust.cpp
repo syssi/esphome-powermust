@@ -340,6 +340,11 @@ void Powermust::dump_config() {
 
   LOG_TEXT_SENSOR("", "Last Q1", this->last_q1_);
   LOG_TEXT_SENSOR("", "Last F", this->last_f_);
+
+  LOG_SWITCH("", "Beeper", this->beeper_switch_);
+  LOG_SWITCH("", "Quick Test", this->quick_test_switch_);
+  LOG_SWITCH("", "Deep Test", this->deep_test_switch_);
+  LOG_SWITCH("", "Ten Minutes Test", this->ten_minutes_test_switch_);
 }
 void Powermust::update() {}
 
